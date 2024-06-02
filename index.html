@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/blood.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+                <style>
+                 .column {
+                     float: left;
+                     width: 50%;
+                 }
+
+                 /* Clear floats after the columns */
+                 .row:after {
+                     content: "";
+                     display: table;
+                     clear: both;
+                 }
+                </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			    <!-- Title Slide -->
+                            <section data-background-image="img/clouds2.gif" data-background-opacity=".3">
+                                <h4>TRIALS, TURBULATIONS, AND INFERENCES OF ML ON COMPLEX DATA: POTATO VARIETIES, SIMULATED CLOUDS, AND MORE</h4>
+                                <small>Presentation by Fabiana Ferracina (WSU Vancouver)</small>
+                            </section>
+
+                             <!-- INTRODUCTION 1  -->
+                <section>
+                    <section data-background-image="img/journey1.jpg" data-background-opacity=".3"  data-transition="fade-out">
+                        <h5>My Academic Journey</h5>
+                        <ul>
+                            <li>Magna cum laude B.S. from the University of Rochester. Awarded Highest Distinction in Mathematics. Elected to Phi Beta Kappa.</li>
+                            <li class="fragment">M.S. in Mathematics (Optimization focus) from the University of Washington.</li>
+                            <li class="fragment">Mathematics and Computer Science Lecturer at the University of Washington Bothell.</li>
+                            <li class="fragment">Earned CISER Mike Jacroux Book Award for Best Among PhD Students in Statistics at Washington State University.</li>
+                        </ul>
+                    </section>
+                    <section data-background-image="img/journey2.jpg" data-background-opacity=".3"  data-transition="fade-in slide-out">
+                        <h5>My Academic Journey</h5>
+                        <ul>
+                            <li>Summer 2022 G-RIPS Sendai Internship: worked on transit problems with Toyota and Univ. of Tsukuba.</li>
+                            <li class="fragment">2023-2024 internship at PNNL to work with  Mahantesh Halappanavar and Laura Fierce.</li>
+                            <li class="fragment">Summer 2023 MRC on Complex Social Systems with Mason Porter $\rightarrow$ Facility-Location TDA project.</li>
+                            <li class="fragment">Invited as academic mentor for Summer 2024 G-RIPS Sendai. Offered postdoc position at Tohoku University.</li>
+                        </ul>
+                    </section>
+                </section>
+                <!-- INTRODUCTION 2 -->
+                            <section>
+                                <section data-auto-animate data-background-image="img/cones.png" data-background-opacity=".1"  data-transition="fade-out">
+                                    <h4>What do potatoes, aerosol, and traffic have in common?</h4>
+                                    <div class="row">
+                                        <div class="column">
+                                            <div class="r-stack">
+					        <img src="./img/potato.png" width="450"  class="fragment">
+					        <img src="./img/aerosol.png" width="450" class="fragment">
+					        <img src="./img/traffic.png" width="450"  class="fragment">
+				            </div>
+                                        </div>
+                                        <div class="column">
+                                        </div>
+                                    </div>
+                                </section>
+                                <section data-auto-animate data-background-image="img/cones.png" data-background-opacity=".1"  data-transition="fade-out">
+                                        <h4>What do potatoes, aerosol, and traffic have in common?</h4>
+                                        <div class="row">
+                                            <div class="column">
+                                                <div class="r-stack">
+					            <img src="./img/potato.png" style="position: relative; top: 150px; right: 50%; width: 300px">
+					            <img src="./img/aerosol.png" style="position: relative; top: 150px; left: 20%; width: 300px">
+					            <img src="./img/traffic.png" style="position: relative; bottom: 100px; width: 300px">
+				                </div>
+                                            </div>
+                                            <div class="column">
+					        <p class="fragment fade-in">Data collection challenges</p>
+					        <p class="fragment fade-in">Modeling complexity</p>
+					        <p class="fragment fade-in">Need for efficient processing</p>
+					        <p class="fragment fade-in">Importance to society</p>
+                                            </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <h5>My Contributions</h5>
+
+                                    <ol class="r-stack">
+                                        <li class="fragment fade-in-then-out">Potato Variety Trials: Data cleaning, processing, exploration. Selection/application of several classification models supplemented with data imputation, optimization of hyperparameters and feature selection. Public repository with complete end-to-end process.</li>
+                                        <li class="fragment fade-in-then-out">Simulating Aerosol Chemistry: Developement of novel graph network simulator that applies physics approach to chemical composition space. Complete framework to prepare, train, predict and analyze aerosol chemistry dynamics. Public repository to help forward methodology.</li>
+                                        <li class="fragment fade-in">Congestion and Emissions: Data cleaning, processing, exploration. Case-study structure. Running computation of queue simulations and matrix approximations. Validating and analyzing results. Integration of emissions estimation into novel queue simulation of a park-and-ride system. Development of model to estimate social cost of trip time and emissions. Introduction to transit policy optimization approach. </li>
+                                    </ol>
+                                </section>
+                            </section>
+                            <!-- PREDICTIVE ANALYTICS OF VARIETIES OF RUSSET POTATOES -->
+                            <section>
+                                <section data-background-image="img/potatoes.png" data-background-opacity=".2" data-transition="slide-in fade-out">
+                                    <h4>PREDICTIVE ANALYTICS OF VARIETIES OF RUSSET POTATOES</h4>
+                                    <p><i><a href="https://arxiv.org/abs/2404.03701">arxiv.org/abs/2404.03701</a> submitted to Crop Science</i></p>
+                                    <p><b>AUTHORS</b></p>
+                                    <p> Fabiana Ferracina, Bala Krishnamoorthy, Mahantesh Halappanavar, Shengwei Hu, Vidyasagar Sathuvalli</p>
+                                </section>
+                                <section data-transition="fade-in fade-out"  data-background-image="img/potatoes.png" data-background-opacity=".2">
+                                    <h5>Introduction</h5>
+                                    <ul>
+                                        <li class="fragment">Potato is a significant crop in the U.S. with high production in the Pacific Northwest.</li>
+
+                                        <li class="fragment">OSU's Potato Breeding and Variety Development program focuses on developing russet varieties.</li>
+                                        <li class="fragment">New potato varieties take 12-13 years to develop, undergoing rigorous trials, starting with 60,000 clones and gradually narrowing down.</li>
+                                    </ul>
+                                </section>
+                                <section data-transition="fade-in fade-out"  data-background-image="img/potatoes.png" data-background-opacity=".2">
+                                    <h5>High Yield, Good Quality, Resistant Crops Require Hard Work</h5>
+                                    <img src="./img/potato_breeding.jpg" alt="Potato Breeding" width="800">
+                                </section>
+                                <section data-transition="fade-in slide-out" data-background-image="./img/grad_potato.jpg" data-background-opacity=".3">
+                                    <h5>Research Goal</h5>
+                                    <p> Given data from trials performed in Oregon, can we use machine learning to predict which varieties should graduate to the next step in the process versus which varieties should be dropped? </p>
+                                </section>
+                                <section data-background-image="./img/oregon_map.png" data-background-opacity=".3">
+                                    <h5>Data</h5>
+                                    <ul>
+                                        <li>Oregon trials in Hermiston, Ontario, Klamath Falls, Corvallis (dropped in 2015)</li>
+                                        <li>Years: 2013-2021</li>
+                                        <li>Total 1086 clones with 40+ features</li>
+                                        <li>Variety grown for 3 years $\Rightarrow$ graduation to tri-state trials</li>
+                                    </ul>
+                                </section>
+                                <section data-background-image="./img/hot.jpeg" data-background-opacity=".2">
+                                    <h5>Challenges: solutions</h5>
+                                    <ul>
+                                        <li>Missing data: Imputation</li>
+                                        <li>Class imbalance: Re-balance the weights</li>
+                                        <li>Numerical features at different scales: Standardize
+                                        <li>Categorical features: Hot encode</li>
+                                        <li>Data not linearly separable: Investigate non-linear models</li>
+                                    </ul>
+                                </section>
+                                <section  data-transition="fade-in fade-out">
+                                    <h5>Top Performing Models</h5>
+                                    <small>Code for this project at <a href="https://github.com/fabstat/burbank">github.com/fabstat/burbank</a></small>
+                                    <div class="row fragment">
+                                        <div class="column">
+					    <img src="./img/mlp.gif" style="width: 420px">
+                                        </div>
+                                        <div class="column">
+                                            <p>
+                                                Multi-layer Perceptron (MLP): artificial neural network consisting of fully connected input, hidden, and output layers.</p>
+                                        </div>
+                                    </div>
+                                    <p class="fragment"> Nonlinear activation function (such as ReLU) to introduce nonlinearity into the model.</p>
+                                </section>
+                                <section  data-transition="fade-in fade-out">
+                                    <h5>Top Performing Models</h5>
+                                    <div class="row">
+                                        <div class="column">
+				            <img src="./img/dt.jpeg" style="width: 420px">
+                                        </div>
+                                        <div class="column">
+                                    <p>
+                                        Histogram-based Gradient Boosting (HGB): Additive model where many weak learners (typically decision trees) are combined to form a strong predictor. Each new tree corrects errors made by the previous ones.</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section  data-transition="fade-in fade-out">
+                                    <h5>Top Performing Models</h5>
+                                    <div class="row">
+                                        <div class="column">
+				            <img src="./img/nonlinearSVM.png" style="width: 420px">
+                                        </div>
+                                        <div class="column">
+                                            <p>
+                                                Support Vector Machine (SVM): RBF kernel maps the original feature space into a higher-dimensional space where a hyperplane can be found to separate the classes.</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section data-transition="slide-in fade-out"  data-background-image="./img/fries.jpeg"  data-background-opacity=".1">
+                                    <h5>Results</h5>
+                                    We measure the quality of classifications using the Matthew's correlation coefficient (MCC):
+
+                                   $$\frac{TP \cdot TN - FP \cdot FN}{((TP + FP)(TP + FN)(TN + FP)(TN + FN))^{\frac{1}{2}}}$$
+
+
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/fries.jpeg"  data-background-opacity=".1">
+                                    <table>
+                                        <caption>MCC for the top classification models after forward feature selection on imputed dataset.</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Model</th>
+                                                <th>&Delta;CV MCC</th>
+                                                <th>Test MCC</th>
+                                                <th>CI Test MCC</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>MLPC</td>
+                                                <td>0.476</td>
+                                                <td>0.608</td>
+                                                <td>(0.581, 0.633)</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>HGBC</td>
+                                                <td>0.531</td>
+                                                <td>0.574</td>
+                                                <td>(0.546, 0.602)</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>SVM</td>
+                                                <td>0.539</td>
+                                                <td>0.502</td>
+                                                <td>(0.471, 0.533)</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p><small>Postprocessing imputed dataset had 885 observations and 40 features.</small></p>
+
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/fries.jpeg"  data-background-opacity=".1">
+                                    <h5>Confusion Matrices: Imputed Set</h5>
+                                    <div>
+
+                                        <img src="./img/nn_imp_pp.png" alt="MLPC Imputed" width="300">
+
+                                        <img src="./img/hgbc_imp_pp.png" alt="HGBC Imputed"  width="300">
+
+                                        <img src="./img/svm_imp_pp.png" alt="SVC Imputed"  width="300">
+
+                                    </div>
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/fries.jpeg"  data-background-opacity=".1">
+                                    <table>
+                                        <caption>MCC for the top classification models after forward feature selection on non-imputed dataset.</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Model</th>
+                                                <th>&Delta;CV MCC</th>
+                                                <th>Test MCC</th>
+                                                <th>CI Test MCC</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>MLPC</td>
+                                                <td>0.595</td>
+                                                <td>0.623</td>
+                                                <td>(0.584, 0.659)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>HGBC</td>
+                                                <td>0.511</td>
+                                                <td>0.645</td>
+                                                <td>(0.608, 0.680)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SVM</td>
+                                                <td>0.731</td>
+                                                <td>0.623</td>
+                                                <td>(0.584, 0.659)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p><small>Postprocessing non-imputed dataset had 404 observations and 40 features.</small></p>
+
+                                </section>
+                                <section data-transition="fade-in slide-out" data-background-image="./img/fries.jpeg"  data-background-opacity=".1">
+                                    <h5>Confusion Matrices: Non-imputed Set</h5>
+                                    <div>
+
+                                        <img src="./img/nn_no_imp_pp.png" alt="MLPC Imputed" width="300">
+
+                                        <img src="./img/hgbc_no_imp_pp.png" alt="HGBC Imputed"  width="300">
+
+                                        <img src="./img/svm_no_imp_pp.png" alt="SVC Imputed"  width="300">
+
+                                    </div>
+                                </section>
+                                <section data-transition="slide-in fade-out" data-background-image="./img/Potato_flowers.jpg"  data-background-opacity=".1">
+                                    <h5>Discussion</h5>
+                                    <ul>
+                                        <li class="fragment"><strong>Trial data challenges:</strong> missing data, class imbalance, multi-dimensionality and data types.</li>
+                                        <li class="fragment"><strong>Bias and Cost Efficiency:</strong> bias towards negative examples leading to potential false negatives $\Rightarrow$ less promising varieties are dropped earlier.</li>
+                                        <li class="fragment"><strong>Machine Learning on Trials Data:</strong> machine learning $+$ traditional selection methods can enhance selection efficiency and performance.</li>
+                        </ul>
+                                </section>
+                                <section data-background-image="./img/steam_fries.jpeg"  data-background-opacity=".3">
+
+                                    <img src="./img/thinking.png" alt="Thinking Bunny" width="300">
+                                    <h5>Now, let's talk about aerosols!</h5>
+
+                                </section>
+                            </section>
+
+                            <!-- LEARNING TO SIMULATE AEROSOL CHEMISTRY WITH GRAPH NEURAL NETWORKS -->
+                            <section>
+                                <section data-background-image="img/chemistry.png" data-background-opacity=".3">
+                                    <h4>LEARNING TO SIMULATE AEROSOL CHEMISTRY WITH GRAPH NEURAL NETWORKS</h4>
+                                    <p><i>Will be submitted to the Aerosol Science and Technology Journal</i></p>
+                                    <p><b>AUTHORS</b></p>
+                                    <p> Fabiana Ferracina, Payton Beeler, Mahantesh Halappanavar, Bala Krishnamoorthy, Marco Minutoli, Laura Fierce</p>
+                                </section>
+                                <section data-transition="fade-out" data-background-image="./img/aero.jpeg"  data-background-opacity=".3">
+                                    <h5>Introduction</h5>
+
+
+                                    <img src="./img/volcano.jpg" alt="Volcano Aerosol" width="900">
+
+
+                                    <p><small>Understanding the chemical composition of aerosols is crucial due to their impact on atmospheric processes and human health.</small></p>
+
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/aero.jpeg"  data-background-opacity=".3">
+                                    <h5>Simulating Aerosols</h5>
+                                <ul>
+
+                                    <li class="fragment">PartMC-MOSAIC model simulates aerosol processes by representing aerosols as individual particles undergoing interactions and chemical reactions, predicting size distribution and composition.</li>
+                                    <li class="fragment">Complexity of aerosol chemistry and high computational costs leads to ongoing efforts to improve accuracy and efficiency.</li>
+                                </ul>
+                                </section>
+                                <section data-transition=" fade-in fade-out" data-background-image="./img/sulfacid.png"  data-background-opacity=".3">
+                                <h5>Research Goal</h5>
+                                <p>How can we study large scale aerosol particles' chemical composition in a fast and accurate way?</p>
+                                </section>
+
+                                <section data-transition=" fade-in fade-out" data-background-image="./img/grey.jpeg"  data-background-opacity="1">
+                                    <h5>Graph Approach</h5>
+                                    <div class="r-stack">
+                                        <img src="./img/gnsidea1.jpg" alt="GNS Idea 1" width="1000" class="r-stretch">
+                                        <img src="./img/gnsidea2.jpg" alt="GNS Idea 2" width="1000" class="r-stretch fragment">
+
+                                    </div>
+
+                                </section>
+                                <section data-transition=" fade-in fade-out" data-background-image="./img/grey.jpeg"  data-background-opacity="1">
+                                    <h5>Graph Approach</h5>
+
+                                        <img src="./img/GNSschemev2.png" alt="GNS Scheme" width="1000">
+
+
+                                </section>
+                                <section data-transition=" fade-in fade-out" data-background-image="./img/grey.jpeg"  data-background-opacity="1">
+                                    <h5>Graph Neural Network</h5>
+                                    <div class="r-stack">
+                                        <img src="./img/Encoder.jpg" alt="GNN Encodeer" width="800" class="r-stretch">
+                                        <img src="./img/Processor.jpg" alt="GNN Processor" width="800" class="r-stretch fragment">
+                                        <img src="./img/Decoder.jpg" alt="GNS Decoder" width="800" class="r-stretch fragment ">
+                                    </div>
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>Training/Validating/Testing: 60/10/30</h5>
+                                    <p>
+                                        Multi-output mean squared error function to compute loss at training:
+                                    </p>
+                                    $$L^{\text{dim}}_{\text{MSE}} =  \sum_{part.} \sum_{\text{chem.}} \frac{\left(\text{target dynamic} - \text{predicted dynamic}\right)^2}{\text{number of particles}}$$
+                                    <p class="fragment"> Loss is minimized using Adam (Adaptive Moment Estimation) algorithm.</p>
+
+                                </section>
+                                <section data-auto-animate data-transition="fade-in slide-out" data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>Training/Validating/Testing: 60/10/30</h5>
+                                    <p>
+                                        Prediction loss is measured both with a observation-wise MSE of particles' mass and concentration differences  $\left(L^{\text{flat}}_{\text{MSE}}\right)$ , and with a normalized mean absolute error (NMAE) computed for each chemical species:
+                                    </p>
+                                    $$\text{NMAE} =  \sum_{part.} \frac{\sum\limits_{\text{tstep}} \left|\text{true mass} - \text{predicted mass}\right|}{\text{number of particles} \cdot \sum\limits_{\text{tstep}} \left| \text{true mass} \right|}$$
+
+                                </section>
+                                <section data-auto-animate data-transition="slide-in fade-out" data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>Training/Validating/Testing: 60/10/30</h5>
+
+                                    $$\text{NMAE} =  \sum_{part.} \frac{\sum\limits_{\text{tstep}} \left|\text{true mass} - \text{predicted mass}\right|}{\text{number of particles} \cdot \sum\limits_{\text{tstep}} \left| \text{true mass} \right|}$$
+                                    <p> We computed the NMAE between the prediction and the ground-truth data (PartMC-MOSAIC simulated data) for all chemical species and obtained histograms of the particles' total mass and dry diameter.</p>
+                                </section>
+                                <section data-transition="fade-in slide-out" data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>Scenario 3 Example</h5>
+                                    <ul>
+                                        <li>Test set has 1146 particles and 144 timesteps</li>
+                                        <li class="fragment">Simple system: H$_2$SO$_4$ condensation on particles containing H$_2$O, SO$_4$, BC, OC</li>
+                                            <li class="fragment">Scenario's 3 minimun loss at 1500 training steps</li>
+                                            <li class="fragment">$L^{\text{flat}}_{\text{MSE}} = 1.03 \times 10^{-6}$ versus baseline $MSE = 0.0585$, $R^2 = 0.999962$</li>
+                                    </ul>
+                                </section>
+
+                                <section data-transition="fade-in fade-out"  data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>A Scenario's Results: SO$_4$ Masses</h5>
+                                    <img src="./img/SO4_animation.gif" alt="SO4 Animation"  width="900">
+                                    <p>$N = 1146$, NMAE $= 0.0126$</p>
+                                </section>
+                                <section data-transition="fade-in fade-out"  data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>A Scenario's Results: H$_2$SO$_4$ Masses</h5>
+                                    <img src="./img/H2SO4_animation.gif" alt="H2SO4 Animation"  width="900">
+                                    <p>$N = 1146$, NMAE $= 0.0123$</p>
+                                </section>
+                                <section data-transition="fade-in slide-out"  data-background-image="./img/grey.jpeg" data-background-opacity=".2">
+                                    <h5>A Scenario's Results: Dry Mass and Dry Diameter</h5>
+                                    <img src="./img/DM_animation.gif" alt="H2SO4 Animation"  width="400">
+                                    <img src="./img/DD_animation.gif" alt="H2SO4 Animation"  width="400">
+                                    <p>$N=1146$, &#35; of training steps $= 1500$, $L^{\text{flat}}_{\text{MSE}} = 1.03 \times 10^{-6}$</p>
+                                </section>
+
+                                <section  data-transition="slide-in fade-out"  data-background-image="./img/air_pollution.webp" data-background-opacity=".3">
+                                    <h5>Discussion</h5>
+                                    <ul>
+                                        <li>New GNS framework (inspired on GNS for physics) effectively models multi-dimensional chemical composition dynamics in aerosols using initial conditions.</li>
+                                        <li class="fragment">Accurate and efficient learning of chemical dynamics, applied to a simple sulfuric acid condensation system.</li>
+                                        <li class="fragment">Training on a GPU approx. 4-5 seconds per 300 steps, prediction time around 0.4 seconds.</li>
+
+                                    </ul>
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/air_pollution.webp" data-background-opacity=".3">
+                                    <h5>Furthermore</h5>
+                                    <ul>
+
+                                        <li>Generalizable across different scenarios of same simple system, maintaining robustness despite varying initial conditions.</li>
+                                        <li class="fragment">GNS framework contains modules to seemlessly prepare input and analyze output in scientifically valueable way.</li>
+                                        <li class="fragment">Modular framework, allowing for adjustable parameters and hyperparameters for optimized performance.</li>
+                                        <li class="fragment">Future work: global nodes for uniform properties, alternative distance functions for more complex systems.</li>
+                        </ul>
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/vehicle_emit.png" data-background-opacity=".3">
+                                    <h5>Conclusion</h5>
+                                    <ul>
+                                    <li>Understanding aerosol chemistry is vital due to impacts on health, climate, and the environment. </li>
+                                    <li class="fragment">For example: sulfate aerosols have a cooling effect on climate, while soot leads to warming effects.</li>
+                                    <li class="fragment">We are affected by aerosols everyday. Common sources of particulate matter and soot are vehicles.</li>
+                                    <li class="fragment">Speaking of vehicles and their emissions...</li>
+                                </section>
+                            </section>
+                            <!-- REDUCING TOTAL TRIP TIME AND VEHICLE EMISSION THROUGH PARK-AND-RIDE – METHODS AND CASE-STUDY  -->
+                            <section>
+                                <section data-background-image="img/bosch.jpeg" data-background-opacity=".2">
+                                    <h4>REDUCING TOTAL TRIP TIME AND VEHICLE EMISSION THROUGH PARK-AND-RIDE – METHODS AND CASE-STUDY</h4>
+                                    <p><i>Submitted to the Journal of Cleaner Production</i></p>
+                                    <p><b>AUTHORS</b></p>
+                                    <p> Ayane Nakamura, Fabiana Ferracina, Naoki Sakata, Amanda E. Hampton, Takahiro Noguchi,
+                                        Hiroyasu Ando</p>
+                                </section>
+                                <section  data-background-image="./img/vehicle_emit.webp" data-background-opacity=".3">
+                                    <h5>Big Problems</h5>
+                                    <div class="r-stack">
+                                        <img src="./img/bus_delay.png" alt="Bus Delay" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/traffic_beep.png" alt="Traffic" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/car_smoke.png" alt="Car Smog" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/full.png" alt="Car Smog" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/cost_fuel.png" alt="Car Smog" width="600" class="fragment fade-in">
+                                    </div>
+                                </section>
+                                <section  data-background-image="./img/parkride.jpeg" data-background-opacity=".1">
+                                    <h5>Solution</h5>
+                                    <div class="r-stack">
+                                        <img src="./img/bsch.png" alt="Bus Schedule" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/bshelter.jpeg" alt="Smart Bus Shelter" width="900" class="fragment fade-in-then-out">
+                                        <img src="./img/epal.png" alt="e-Palette" width="600" class="fragment fade-in-then-out">
+                                        <img src="./img/trafficlaws.png" alt="Traffic Laws" width="900" class="fragment fade-in">
+                                    </div>
+                                </section>
+                                <section data-transition="slide-in fade-out"  data-background-image="./img/parkride.jpeg" data-background-opacity=".1">
+                                    <h5>PnR Framework Schematic</h5>
+                                    <img src="./img/flowchart.png" alt="PnR Schematic" width="900">
+                                </section>
+                                <section data-transition="fade-in slide-out">
+                                    <h5>Queue Model Schematics</h5>
+                                    <img src="./img/mixedmodelpic2.png" alt="Queue Schematic" width="900">
+                                    <p><small><i>Developed by Ayane Nakamura</i></small></p>
+                                </section>
+                                <section data-transition="slide-in slide-out">
+                                    <h5>Meet MEET</h5>
+                                    <p>
+                                        $$ \begin{equation}
+                                        E_k = \sum\limits_i^{\text{vehicle type}} \left[\text{number of type $i$'s} \times \text{ave. distance by i} \right. \\ \left. \times \sum\limits_j^{\text{road type}} \left(\text{prop. of distance on road $j$} \times \right. \\ \left. \text{emission factor for pollutant $k$, vehicle $i$ on road $j$}\right)\right],
+                                        \end{equation}$$
+                                   </p>
+                                </section>
+                                <section>
+                                    <h5>Data for Case Study</h5>
+                                    <ul>
+                                        <li>2018 Person Trip Survey by the Tokyo Metropolitan Area Transportation Planning Council</li>
+                                        <li class="fragment">630,000 households sampled from 18 million, with a response rate of 26% </li>
+                                        <li class="fragment">693,083 trip observations from 382,667 individuals</li>
+                                        <li class="fragment">$\approx$ 1% of the total movement within Tokyo metro area. Extrapolated to represent $\approx$ 74 million trips on an arbitrary workday.</li>
+                                    </ul>
+                                </section>
+                                <section data-auto-animate data-background-image="./img/mttsuky.jpeg" data-background-opacity=".2" data-transition="slide-in fade-out">
+                                    <h5>Case Study of Tsukuba</h5>
+                                    <img src="./img/tsuky.png" alt="Tsukuba" width="800">
+                                </section>
+                                <section data-auto-animate data-background-image="./img/mttsuky.jpeg" data-background-opacity=".2" data-transition="slide-in fade-out">
+                                    <h5>Case Study of Tsukuba</h5>
+                                    <img src="./img/tsukuba_city.jpg" alt="Tsukuba Science City" width="1400">
+                                </section>
+                                <section data-auto-animate data-background-image="./img/mttsuky.jpeg" data-background-opacity=".2" data-transition="slide-in fade-out">
+                                    <h5>Case Study of Tsukuba</h5>
+                                    <img src="./img/case_study.jpg" alt="Case Study" width="1400">
+                                </section>
+                                <section data-auto-animate data-background-image="./img/mttsuky.jpeg" data-background-opacity=".2" data-transition="slide-in fade-out">
+
+                                    <h5>Case Study of Tsukuba</h5>
+                                    <ul>
+                                        <li>Vehicle nominal speeds were set via a grid-search to maximize served customers, and bus inter-arrival times were also optimized within the stability constraints of the queuing model.</li>
+                                        <li class="fragment">Parameters such as vehicle speed and bus inter-arrival times were input into MEET model to directly tie travel times with vehicle emissions.</li>
+                                    </ul>
+
+                                </section>
+                                <section data-transition="slide-in fade-out">
+                                    <h5>Results</h5>
+                                    <div class="r-stack">
+                                    <img src="./img/compwithcurr.png" alt="Trip time and emissions" width="900">
+
+                                    <p class="fragment"><small style="color:black; position:absolute; right:15%; width:30%;" >Empirical expected total trip time and emissions are 0.3893 hours and 6,093,234 grams of pollutants, respectively.</small><img style="position:absolute; top:30%; right:10%; width:10%;" src="./img/pointbear.gif" alt="Bear pointing up"></p>
+                                    </div>
+                                    <p><small><it>The mean indicated on the axis is for aggregation over PnR hubs, direction of travel, and four hour time intervals.</it></small></p>
+                                </section>
+                                <section data-transition="fade-in fade-out">
+                                    <h5>Simulation vs. Approximation Model</h5>
+                                    <img src="./img/hubscaremit.png" alt="Car Emissions" width="900">
+                                </section>
+                                <section data-transition="fade-in fade-out">
+                                    <h5>Simulation vs. Approximation Model</h5>
+                                    <img src="./img/hubsbusemit.png" alt="Bus Emissions" width="900">
+                                </section>
+                                <section data-transition="fade-in fade-out">
+                                    <h5>Simulation vs. Approximation Model</h5>
+                                    <img src="./img/hubstt.png" alt="Total Trip Times" width="900">
+                                </section>
+                                <section data-transition="fade-in slide-out">
+                                    <h5>Simulation vs. Approximation Model</h5>
+                        <img src="./img/hubswt.png" alt="Travel and Wait Times" width="900">
+                                </section>
+                                <section data-background-image="./img/economy.jpg" data-background-opacity=".1" data-transition="slide-in fade-out">
+                                    <h5>A New Social Cost</h5>
+                                    <p>We introduce SCETT, the <b>S</b>ocial <b>C</b>ost of <b>E</b>missions and <b>T</b>rip <b>T</b>ime:</p>
+                                    $$\text{SCETT} = \text{social cost of CO$_2$}  \times \\ \text{CO$_2$ emissions of vehicles during time interval $T$} \\ + \text{social cost of trip time} \times |T| \times \\ \text{average total trip time per hour}$$
+                                </section>
+                                <section data-background-image="./img/economy.jpg" data-background-opacity=".1" data-transition="fade-in fade-out">
+                                    <ul>
+                                        <li>SCETT is in international dollars per capita during a given time interval</li>
+                                        <li>Social cost of CO$_2$ is cost in int'l &#36;/ grams of carbon derived from climate economy models</li>
+                                        <li>Social cost of trip time is in int'l &#36;/hr and uses a country's per capita productivity as an opportunity cost</li>
+                                    </ul>
+                                </section>
+                                <section data-background-image="./img/economy.jpg" data-background-opacity=".1" data-transition="slide-in slide-out">
+                                    <h5>Transit Policy Optimization</h5>
+                                    <p>$$ \begin{equation}
+                                        \text{arg}\min\limits_{(b,C)} \left(\sum\limits_{h=1}^n \sum\limits_{p_{car} \in P} \text{SCETT}(b,C) \right),
+                                        \end{equation}$$
+
+                                        $b, C$ represent the bus frequency interval and bus capacity respectively. $h$ represents PnR stations 1 through $n$. $p_{car}$ is the proportion of customers using private cars. Note that in our current PnR system we only account for emissions of buses and private cars, and the length of time interval $|T| = 4$. </p>
+
+                                </section>
+                                <section data-background-image="./img/distros.jpg"  data-transition="slide-in fade-out">
+                                    <h5>Transit Policy in Tsukuba's PnR System</h5>
+                                    <img src="./img/Time+CO2(FUND)_hub_3.png">
+                                    <p><small>SCETT according to FUND in international dollars/capita per percent of car usage. Hub 3 of Tsukuba's PnR system according to the 2018 Person Trip survey. Each point's color pertain to the number of buses ($[1/b]$) and annotations above each point represent the bus capacity. Time is 5.2 times more valuable than emissions.</small></p>
+
+                                </section>
+                                <section  data-background-image="./img/distros.jpg"  data-transition="fade-in fade-out">
+                                    <h5>Transit Policy in Tsukuba's PnR System</h5>
+                                    <img src="./img/Time+CO2(RICE)_hub_3.png">
+                                    <p><small>SCETT according to RICE in international dollars/capita per percent of car usage. Hub 3 of Tsukuba's PnR system according to the 2018 Person Trip survey. Each point's color pertain to the number of buses ($[1/b]$) and annotations above each point represent the bus capacity. Time is 1.25 times more valuable than emissions.</small></p>
+
+                                </section>
+                                <section  data-background-image="./img/distros.jpg" data-transition="fade-in fade-out">
+                                    <table>
+                                        <caption>Current SCETTs per four hour intervals per hub in international dollars. The values assume 90-95% car users, and large buses deployed at medium frequency.</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Hub Number</th>
+                                                <th>Time+CO2 Social Cost (FUND)</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: center;">1</td>
+                                                <td style="text-align: center;">1024.03</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">2</td>
+                                                <td style="text-align: center;">1053.50</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">3</td>
+                                                <td style="text-align: center;">1662.02</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">4</td>
+                                                <td style="text-align: center;">1011.24</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">5</td>
+                                                <td style="text-align: center;">553.23</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                                <section data-background-image="./img/distros.jpg" data-transition="fade-in slide-out">
+                                    <h5>SCETT Savings</h5>
+                                    <img src="./img/SCETTsave.png" alt="SCETT Savings" width="900">
+                                </section>
+                                <section   data-background-image="./img/jam.gif" data-background-opacity=".1" data-transition="fade-out">
+                                    <h5>Discussion</h5>
+                                    <ul>
+                                        <li>First study to comprehensively consider both time and environmental costs in evaluating the social cost of Park and Ride (PnR) systems.</li>
+                                        <li class="fragment">Novel approach combining queueing and emissions models aimed at minimizing social costs under different transit policies.</li>
+                                        <li class="fragment">Monte Carlo queue simulation computes waiting and traveling times of customers under various PnR scenarios.</li>
+                                    </ul>
+                                </section>
+                                <section  data-background-image="./img/jam.gif" data-background-opacity=".1" data-transition="fade-in fade-out">
+                                    <h5>Discussion</h5>
+                                    <ul>
+                                        <li>Output speed and vehicle type from the queueing model used to estimate emissions.</li>
+                                        <li class="fragment">Convertion of trip times and vehicle emissions into monetary cost per capita.</li>
+                                        <li class="fragment">SCETT model helps transit policy makers reduce costs from trip time and emission.</li>
+                                        <li class="fragment">Smaller, more frequent buses are more socially beneficial when car usage is low, while larger, less frequent buses are better when car usage is high.</li>
+                        </ul>
+
+                    </section>
+                    <section  data-background-image="./img/jam.gif" data-background-opacity=".1" data-transition="fade-in fade-out">
+                        <h5>Discussion</h5>
+                        <ul>
+                            <li>SCETT values are higher for hubs farther from the city center, highlighting the importance of strategic PnR station placement.</li>
+                            <li class="fragment">Current high car usage rate leads to higher SCETT values even under optimal transit policies, suggesting the need for policies reducing car use.</li>
+                            <li class="fragment">Significant social cost savings are possible by implementing data-driven transit policies, with more savings achievable if private car use decreases.</li>
+                        </ul>
+                    </section>
+
+                            </section>
+                            <!-- CONCLUSION -->
+                            <section>
+                                <section data-transition="fade-out" data-background-image="./img/wsuv.jpeg" data-background-opacity=".2">
+
+                                    <p>Environmental and societal impacts of these fields are interconnected, with each influencing and being influenced by factors such as air quality, climate change, food security, and urban pollution.</p>
+                                    <p class="fragment">Cross-disciplinary innovations can lead to more holistic approaches to environmental management and policy-making, with data-driven approaches and systems thinking required for meaningful breakthoughs.</p>
+
+                                </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/wsuv.jpeg" data-background-opacity=".2">
+
+                                    <img src="./img/thesis_defense.png" alt="Thesis Defense" width="800">
+
+
+                                </section>
+                                <section data-transition="fade-out" data-background-image="./img/wsuv.jpeg" data-background-opacity=".6">
+                                    <img src="./img/thanks.gif" alt="Thesis Defense" width="400">
+
+                                </section>
+
+                            </section>
+
+
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+                <script src="plugin/math/math.js"></script>
+		<script>
+		 // More info about initialization & config:
+		 // - https://revealjs.com/initialization/
+		 // - https://revealjs.com/config/
+		 Reveal.initialize({
+		     hash: true,
+                     slideNumber: 'c/t',
+                     mathjax2: {
+                         mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js',
+                         config: 'TeX-AMS_HTML-full',
+                         // pass other options into `MathJax.Hub.Config()`
+                         tex2jax: {
+                             inlineMath: [ [ '$', '$' ], [ '\\(', '\\)' ] ],
+                             skipTags: [ 'script', 'noscript', 'style', 'textarea', 'pre' ]
+                         }
+                     },
+
+
+		     // Learn about plugins: https://revealjs.com/plugins/
+		     plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2 ]
+		 });
+		</script>
+	</body>
+</html>
