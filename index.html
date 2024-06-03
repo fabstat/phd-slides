@@ -96,7 +96,7 @@
                                     <ol class="r-stack">
                                         <li class="fragment fade-in-then-out">Potato Variety Trials: Data cleaning, processing, exploration. Selection/application of several classification models supplemented with data imputation, optimization of hyperparameters and feature selection. Public repository with complete end-to-end process.</li>
                                         <li class="fragment fade-in-then-out">Simulating Aerosol Chemistry: Developement of novel graph network simulator that applies physics approach to chemical composition space. Complete framework to prepare, train, predict and analyze aerosol chemistry dynamics. Public repository to help forward methodology.</li>
-                                        <li class="fragment fade-in">Congestion and Emissions: Data cleaning, processing, exploration. Case-study structure. Running computation of queue simulations and matrix approximations. Validating and analyzing results. Integration of emissions estimation into novel queue simulation of a park-and-ride system. Development of model to estimate social cost of trip time and emissions. Introduction to transit policy optimization approach. </li>
+                                        <li class="fragment fade-in">Congestion and Emissions: Data cleaning, processing, exploration. Case-study structure. Computation of queue simulations and matrix approximations. Validating and analyzing results. Integration of emissions estimation into novel queue simulation of a park-and-ride system. Development of model to estimate social cost of trip time and emissions. Introduction to transit policy optimization approach. </li>
                                     </ol>
                                 </section>
                             </section>
@@ -330,10 +330,15 @@
                                     <li class="fragment">Complexity of aerosol chemistry and high computational costs leads to ongoing efforts to improve accuracy and efficiency.</li>
                                 </ul>
                                 </section>
+                                <section data-transition="fade-in fade-out" data-background-image="./img/aero.jpeg"  data-background-opacity=".3">
+                                    <h5>Simulating Aerosols</h5>
+                                    <p> In particular MOSAIC solves a first order ODE system, where the rate of concentration change over time of a particular gas species is proportional to the its concentration at the time. The proportionality constant depends on several fixed values and correction factors. It can be efficient for reduced models, however it doesn't scale well in particle-based models such as PartMC.</p>
+                                </section>
                                 <section data-transition=" fade-in fade-out" data-background-image="./img/sulfacid.png"  data-background-opacity=".3">
                                 <h5>Research Goal</h5>
                                 <p>How can we study large scale aerosol particles' chemical composition in a fast and accurate way?</p>
                                 </section>
+
 
                                 <section data-transition=" fade-in fade-out" data-background-image="./img/grey.jpeg"  data-background-opacity="1">
                                     <h5>Graph Approach</h5>
@@ -413,8 +418,19 @@
                                     <h5>Discussion</h5>
                                     <ul>
                                         <li>New GNS framework (inspired on GNS for physics) effectively models multi-dimensional chemical composition dynamics in aerosols using initial conditions.</li>
-                                        <li class="fragment">Accurate and efficient learning of chemical dynamics, applied to a simple sulfuric acid condensation system.</li>
-                                        <li class="fragment">Training on a GPU approx. 4-5 seconds per 300 steps, prediction time around 0.4 seconds.</li>
+                                        <li class="fragment">It offers multi-dimensional time-changing features and multi-dimensional node properties.</li>
+                                        <li class="fragment">Flexibility of using different activation functions in each MLP.</li>
+
+
+                                    </ul>
+                                </section>
+                                <section  data-transition="slide-in fade-out"  data-background-image="./img/air_pollution.webp" data-background-opacity=".3">
+                                    <h5>Discussion</h5>
+                                    <ul>
+                                        <li>Our GNS provides  modules to seamlessly prepare input and analyze output in scientifically valueable way.</li>
+                                        <li class="fragment">Generalizable across different scenarios of same simple system, maintaining robustness despite varying initial conditions.</li>
+                                        <li class="fragment">We provide a modular framework, allowing for adjustable parameters and hyperparameters for optimized performance.</li>
+
 
                                     </ul>
                                 </section>
@@ -422,9 +438,9 @@
                                     <h5>Furthermore</h5>
                                     <ul>
 
-                                        <li>Generalizable across different scenarios of same simple system, maintaining robustness despite varying initial conditions.</li>
-                                        <li class="fragment">GNS framework contains modules to seemlessly prepare input and analyze output in scientifically valueable way.</li>
-                                        <li class="fragment">Modular framework, allowing for adjustable parameters and hyperparameters for optimized performance.</li>
+                                        <li>Accurate and efficient learning of chemical dynamics, applied to a simple sulfuric acid condensation system.</li>
+                                        <li class="fragment">Training on a GPU approx. 4-5 seconds per 300 steps, prediction time around 0.4 seconds.</li>
+
                                         <li class="fragment">Future work: global nodes for uniform properties, alternative distance functions for more complex systems.</li>
                         </ul>
                                 </section>
@@ -476,9 +492,10 @@
                                 </section>
                                 <section data-transition="slide-in slide-out">
                                     <h5>Meet MEET</h5>
+                                    <small class="fragment">Methodologies for Estimating Emissions from Transportation</small>
                                     <p>
                                         $$ \begin{equation}
-                                        E_k = \sum\limits_i^{\text{vehicle type}} \left[\text{number of type $i$'s} \times \text{ave. distance by i} \right. \\ \left. \times \sum\limits_j^{\text{road type}} \left(\text{prop. of distance on road $j$} \times \right. \\ \left. \text{emission factor for pollutant $k$, vehicle $i$ on road $j$}\right)\right],
+                                        E_k = \sum\limits_i^{\text{vehicle type}} [\text{number of type $i$'s} \times \text{ave. distance by i} \\  \times \sum\limits_j^{\text{road type}} \left(\text{prop. of distance on road $j$} \times \right. \\ \left. \text{emission factor for pollutant $k$, vehicle $i$ on road $j$}\right)],
                                         \end{equation}$$
                                    </p>
                                 </section>
@@ -555,7 +572,7 @@
                                         \text{arg}\min\limits_{(b,C)} \left(\sum\limits_{h=1}^n \sum\limits_{p_{car} \in P} \text{SCETT}(b,C) \right),
                                         \end{equation}$$
 
-                                        $b, C$ represent the bus frequency interval and bus capacity respectively. $h$ represents PnR stations 1 through $n$. $p_{car}$ is the proportion of customers using private cars. Note that in our current PnR system we only account for emissions of buses and private cars, and the length of time interval $|T| = 4$. </p>
+                                        $b, C$ represent the bus frequency interval and bus capacity respectively. $h$ represents PnR stations 1 through $n$. $p_{car}$ is the proportion of customers using private cars. Note that in our current PnR system we only account for emissions of buses and private cars, and the length of time interval $|T| = 4$ hours. </p>
 
                                 </section>
                                 <section data-background-image="./img/distros.jpg"  data-transition="slide-in fade-out">
